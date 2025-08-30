@@ -440,9 +440,7 @@ def enhanced_sidebar():
     st.sidebar.write("Created by **Trishala** – CSE Final Year, VRSEC")
 
 def apply_custom_css():
-    """Apply custom CSS styling with black text everywhere"""
     import streamlit as st
-
     st.markdown("""
     <style>
     /* App background */
@@ -460,32 +458,9 @@ def apply_custom_css():
     .markdown-text-container, label, span, p, li, strong {
         color: #000000 !important;
     }
+
     h1, h2, h3, h4, h5, h6 {
         color: #000000 !important;
-    }
-
-    /* Text inputs (username, password, etc.) */
-    input[type="text"], input[type="password"], textarea {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-        border: 2px solid #e0e6ff !important;
-        border-radius: 10px !important;
-        padding: 0.5rem !important;
-    }
-
-    /* Buttons (Login, Signup) */
-    .stButton > button {
-        border-radius: 10px !important;
-        border: none !important;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        color: #ffffff !important;
-        font-weight: 600 !important;
-        padding: 0.6rem 1.2rem !important;
-        transition: 0.3s ease-in-out;
-    }
-    .stButton > button:hover {
-        background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
-        transform: scale(1.02);
     }
 
     /* Expander styling */
@@ -496,6 +471,54 @@ def apply_custom_css():
         color: #000000 !important;
     }
 
+    /* Text area input */
+    .stTextArea textarea {
+        background-color: white !important;
+        border-radius: 10px !important;
+        border: 2px solid #e0e6ff !important;
+        color: #000000 !important;
+    }
+
+    /* Selectbox dropdowns */
+    .stSelectbox div[data-baseweb="select"] > div {
+        background-color: white !important;
+        border-radius: 10px !important;
+        color: #000000 !important;
+    }
+
+    /* 🔥 Generic Buttons (gradient style) */
+    .stButton > button {
+        border-radius: 25px !important;
+        border: none !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        padding: 0.6rem 1.2rem !important;
+        transition: 0.3s ease-in-out;
+    }
+
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
+        transform: scale(1.02);
+    }
+
+    /* 🔥 Special Styling for Login / Signup Buttons */
+    .stButton > button:has(span:contains("Login")),
+    .stButton > button:has(span:contains("Signup")),
+    .stButton > button:has(span:contains("Sign Up")) {
+        background: #ffffff !important;   /* White background */
+        color: #000000 !important;        /* Black text */
+        border: 2px solid #764ba2 !important; /* Purple border to stand out */
+        font-weight: 700 !important;
+    }
+
+    .stButton > button:has(span:contains("Login")):hover,
+    .stButton > button:has(span:contains("Signup")):hover,
+    .stButton > button:has(span:contains("Sign Up")):hover {
+        background: #f0f0f0 !important;
+        transform: scale(1.02);
+    }
+
     /* Metrics */
     .stMetric {
         background: white !important;
@@ -503,7 +526,7 @@ def apply_custom_css():
         border-radius: 10px !important;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
-    .stMetric label, .stMetric div, .stMetric span {
+    .stMetric label, .stMetric div {
         color: #000000 !important;
     }
 
@@ -516,8 +539,6 @@ def apply_custom_css():
     }
     </style>
     """, unsafe_allow_html=True)
-
-
 
 # Initialize at the very start
 init_session_state()
