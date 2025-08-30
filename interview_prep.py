@@ -134,6 +134,13 @@ def login_signup_page():
         <p style='color: #e0e6ff; margin-top: 0.5rem;'>Master Your Tech Interviews</p>
     </div>
     """, unsafe_allow_html=True)
+    st.sidebar.markdown("""
+Created by **Trishala** 🌟 – CSE Final Year 💻, VRSEC 🎓  
+Hey there! 👋 Hope you're doing well 😊  
+Keep going, you can do it! 💪✨  
+Have a productive day! ☀️📚
+""")
+
     
     tab1, tab2 = st.tabs(["Login", "Sign Up"])
     
@@ -433,78 +440,81 @@ def enhanced_sidebar():
     st.sidebar.write("Created by **Trishala** – CSE Final Year, VRSEC")
 
 def apply_custom_css():
-    """Apply custom CSS styling with black text"""
+    """Apply custom CSS styling with black text everywhere"""
     st.markdown("""
     <style>
+    /* App background */
     .stApp {
         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
-    
+
     .main .block-container {
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
-    
-    /* Black text for better readability */
-    .stMarkdown, .stMarkdown p, .stMarkdown div {
+
+    /* Force all text to black for readability */
+    .stMarkdown, .stMarkdown p, .stMarkdown div, .markdown-text-container, label, span, p, li, strong {
         color: #000000 !important;
     }
-    
+
     h1, h2, h3, h4, h5, h6 {
         color: #000000 !important;
     }
-    
-    .stSelectbox > div > div {
-        background-color: white;
-        border-radius: 10px;
-    }
-    
-    .stTextArea > div > div > textarea {
-        background-color: white;
-        border-radius: 10px;
-        border: 2px solid #e0e6ff;
+
+    /* Expander styling */
+    .stExpander, .stExpander summary {
+        background: white !important;
+        border-radius: 10px !important;
+        border: 1px solid #ddd !important;
         color: #000000 !important;
     }
-    
+
+    /* Text area input */
+    .stTextArea textarea {
+        background-color: white !important;
+        border-radius: 10px !important;
+        border: 2px solid #e0e6ff !important;
+        color: #000000 !important;
+    }
+
+    /* Selectbox dropdowns */
+    .stSelectbox div[data-baseweb="select"] > div {
+        background-color: white !important;
+        border-radius: 10px !important;
+        color: #000000 !important;
+    }
+
+    /* Buttons */
     .stButton > button {
-        border-radius: 25px;
-        border: none;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        font-weight: 600;
+        border-radius: 25px !important;
+        border: none !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+        font-weight: 600 !important;
     }
-    
+
+    /* Metrics */
     .stMetric {
-        background: white;
-        padding: 1rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background: white !important;
+        padding: 1rem !important;
+        border-radius: 10px !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
-    
-    .stMetric label {
+    .stMetric label, .stMetric div {
         color: #000000 !important;
     }
-    
-    .stExpander {
-        background: white;
-        border-radius: 10px;
-        border: 1px solid #e0e6ff;
+
+    /* Sidebar */
+    section[data-testid="stSidebar"] {
+        background-color: #f0f2f6 !important;
     }
-    
-    .stExpander summary {
-        color: #000000 !important;
-    }
-    
-    /* Sidebar styling */
-    .css-1d391kg {
-        background-color: #f0f2f6;
-    }
-    
-    .css-1d391kg .stMarkdown {
+    section[data-testid="stSidebar"] * {
         color: #000000 !important;
     }
     </style>
     """, unsafe_allow_html=True)
+
 
 # Initialize at the very start
 init_session_state()
