@@ -455,14 +455,37 @@ def apply_custom_css():
         padding-bottom: 2rem;
     }
 
-    /* Force all text to black for readability */
+    /* Force all text to black */
     .stMarkdown, .stMarkdown p, .stMarkdown div, 
     .markdown-text-container, label, span, p, li, strong {
         color: #000000 !important;
     }
-
     h1, h2, h3, h4, h5, h6 {
         color: #000000 !important;
+    }
+
+    /* Text inputs (username, password, etc.) */
+    input[type="text"], input[type="password"], textarea {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 2px solid #e0e6ff !important;
+        border-radius: 10px !important;
+        padding: 0.5rem !important;
+    }
+
+    /* Buttons (Login, Signup) */
+    .stButton > button {
+        border-radius: 10px !important;
+        border: none !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        padding: 0.6rem 1.2rem !important;
+        transition: 0.3s ease-in-out;
+    }
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
+        transform: scale(1.02);
     }
 
     /* Expander styling */
@@ -471,37 +494,6 @@ def apply_custom_css():
         border-radius: 10px !important;
         border: 1px solid #ddd !important;
         color: #000000 !important;
-    }
-
-    /* Text inputs + Password fields */
-    .stTextInput input, .stPasswordInput input, .stTextArea textarea {
-        background-color: white !important;
-        border-radius: 10px !important;
-        border: 2px solid #e0e6ff !important;
-        color: #000000 !important;
-    }
-
-    /* Selectbox dropdowns */
-    .stSelectbox div[data-baseweb="select"] > div {
-        background-color: white !important;
-        border-radius: 10px !important;
-        color: #000000 !important;
-    }
-
-    /* Buttons */
-    .stButton > button {
-        border-radius: 25px !important;
-        border: none !important;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        color: #ffffff !important;
-        font-weight: 600 !important;
-        padding: 0.6rem 1.2rem !important;
-        transition: 0.3s ease-in-out;
-    }
-
-    .stButton > button:hover {
-        background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
-        transform: scale(1.02);
     }
 
     /* Metrics */
@@ -524,6 +516,7 @@ def apply_custom_css():
     }
     </style>
     """, unsafe_allow_html=True)
+
 
 
 # Initialize at the very start
