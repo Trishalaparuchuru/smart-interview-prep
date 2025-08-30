@@ -441,6 +441,8 @@ def enhanced_sidebar():
 
 def apply_custom_css():
     """Apply custom CSS styling with black text everywhere"""
+    import streamlit as st
+
     st.markdown("""
     <style>
     /* App background */
@@ -454,7 +456,8 @@ def apply_custom_css():
     }
 
     /* Force all text to black for readability */
-    .stMarkdown, .stMarkdown p, .stMarkdown div, .markdown-text-container, label, span, p, li, strong {
+    .stMarkdown, .stMarkdown p, .stMarkdown div, 
+    .markdown-text-container, label, span, p, li, strong {
         color: #000000 !important;
     }
 
@@ -490,8 +493,15 @@ def apply_custom_css():
         border-radius: 25px !important;
         border: none !important;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        color: white !important;
+        color: #ffffff !important;
         font-weight: 600 !important;
+        padding: 0.6rem 1.2rem !important;
+        transition: 0.3s ease-in-out;
+    }
+
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
+        transform: scale(1.02);
     }
 
     /* Metrics */
