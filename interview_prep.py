@@ -448,52 +448,73 @@ def apply_custom_css():
         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
 
-    .main .block-container {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-    }
-
-    /* More aggressive text color forcing with multiple selectors */
-    .stApp, .stApp *, 
-    .stMarkdown, .stMarkdown *, 
-    .stText, .stText *,
-    .markdown-text-container, .markdown-text-container *,
-    p, span, div, label, strong, em, li, ul, ol,
-    [data-testid="stMarkdownContainer"], [data-testid="stMarkdownContainer"] *,
-    [data-testid="stText"], [data-testid="stText"] * {
+    /* NUCLEAR OPTION - Force all elements to be visible */
+    * {
         color: #000000 !important;
     }
 
-    /* Headers with stronger specificity */
-    h1, h2, h3, h4, h5, h6,
-    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, 
-    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6,
-    [data-testid="stMarkdownContainer"] h1,
-    [data-testid="stMarkdownContainer"] h2,
-    [data-testid="stMarkdownContainer"] h3,
-    [data-testid="stMarkdownContainer"] h4,
-    [data-testid="stMarkdownContainer"] h5,
-    [data-testid="stMarkdownContainer"] h6 {
+    /* Force all backgrounds to be white for inputs */
+    input, textarea, select, 
+    *[role="textbox"], 
+    *[role="combobox"],
+    div[data-baseweb="input"],
+    div[data-baseweb="textarea"],
+    div[data-baseweb="select"] {
+        background-color: #ffffff !important;
+        background: #ffffff !important;
         color: #000000 !important;
-        text-shadow: none !important;
+        border: 1px solid #cccccc !important;
+        border-radius: 8px !important;
     }
 
-    /* Welcome Back text specifically */
-    .stApp h1:contains("Welcome Back"),
-    [data-testid="stMarkdownContainer"]:has-text("Welcome Back"),
-    div:contains("Welcome Back") {
+    /* Target all possible input containers */
+    div[class*="stTextInput"] *,
+    div[class*="textinput"] *,
+    div[class*="TextInput"] *,
+    div[data-testid*="textInput"] *,
+    div[data-testid*="TextInput"] * {
+        background-color: #ffffff !important;
+        background: #ffffff !important;
         color: #000000 !important;
-        font-weight: bold !important;
     }
 
-    /* Input labels */
-    label, .stSelectbox label, .stTextInput label, .stTextArea label,
-    [data-testid="stWidgetLabel"], [data-testid="stWidgetLabel"] * {
-        color: #000000 !important;
-        font-weight: 500 !important;
+    /* Brute force approach for all Streamlit input wrappers */
+    .stTextInput,
+    .stTextInput *,
+    .stTextInput > div,
+    .stTextInput > div > div,
+    .stTextInput > div > div > div,
+    .stTextInput > div > div > div > div {
+        background-color: #ffffff !important;
+        background: #ffffff !important;
     }
 
-    /* Tab styling */
+    /* Same for password fields */
+    input[type="password"],
+    *[type="password"] {
+        background-color: #ffffff !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #cccccc !important;
+    }
+
+    /* Headers */
+    h1, h2, h3, h4, h5, h6 {
+        color: #000000 !important;
+    }
+
+    /* Buttons - keep your styling */
+    .stButton > button {
+        border-radius: 25px !important;
+        border: none !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        padding: 0.6rem 1.2rem !important;
+        transition: 0.3s ease-in-out;
+    }
+
+    /* Tabs */
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
     }
@@ -511,265 +532,28 @@ def apply_custom_css():
         color: #ffffff !important;
     }
 
-    /* Expander styling with better visibility */
-    .streamlit-expanderHeader {
-        background: white !important;
-        color: #000000 !important;
-        border-radius: 10px !important;
-        border: 1px solid #ddd !important;
-    }
-
-    .streamlit-expanderContent {
-        background: white !important;
-        color: #000000 !important;
-        border-radius: 0 0 10px 10px !important;
-        border: 1px solid #ddd !important;
-        border-top: none !important;
-    }
-
-    details[data-testid="stExpander"] summary {
-        background: white !important;
-        color: #000000 !important;
-        border-radius: 10px !important;
-        border: 1px solid #ddd !important;
-    }
-
-    details[data-testid="stExpander"] div {
-        background: white !important;
-        color: #000000 !important;
-    }
-
-    /* Text area input with better contrast - comprehensive selectors */
-    .stTextArea textarea,
-    [data-testid="stTextArea"] textarea,
-    .stTextArea div[data-baseweb="textarea"] textarea,
-    textarea[data-testid="stTextArea"],
-    .st-emotion-cache-1d391kg textarea {
-        background-color: #ffffff !important;
-        border-radius: 10px !important;
-        border: 2px solid #e0e6ff !important;
-        color: #000000 !important;
-        font-family: inherit !important;
-        box-shadow: none !important;
-    }
-
-    .stTextArea textarea::placeholder,
-    [data-testid="stTextArea"] textarea::placeholder,
-    textarea::placeholder {
-        color: #666666 !important;
-    }
-
-    /* Text input styling - multiple selectors for deployment compatibility */
-    .stTextInput input,
-    [data-testid="stTextInput"] input,
-    .stTextInput div[data-baseweb="input"] input,
-    input[data-testid="textinput-input"],
-    .st-emotion-cache-qrbaxs input,
-    .st-emotion-cache-1d391kg input {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-        border-radius: 10px !important;
-        border: 2px solid #e0e6ff !important;
-        box-shadow: none !important;
-    }
-
-    /* Password input styling - comprehensive selectors */
-    input[type="password"],
-    .stTextInput input[type="password"],
-    [data-testid="stTextInput"] input[type="password"],
-    .stTextInput div[data-baseweb="input"] input[type="password"],
-    input[data-testid="textinput-input"][type="password"] {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-        border-radius: 10px !important;
-        border: 2px solid #e0e6ff !important;
-        box-shadow: none !important;
-    }
-
-    /* Selectbox dropdowns with better visibility */
-    .stSelectbox div[data-baseweb="select"] > div,
-    [data-testid="stSelectbox"] div[data-baseweb="select"] > div {
-        background-color: white !important;
-        border-radius: 10px !important;
-        color: #000000 !important;
-        border: 2px solid #e0e6ff !important;
-    }
-
-    /* Dropdown menu items */
-    .stSelectbox ul[role="listbox"],
-    [data-baseweb="menu"] ul {
-        background-color: white !important;
-        color: #000000 !important;
-    }
-
-    .stSelectbox li[role="option"],
-    [data-baseweb="menu"] li {
-        background-color: white !important;
-        color: #000000 !important;
-    }
-
-    .stSelectbox li[role="option"]:hover,
-    [data-baseweb="menu"] li:hover {
-        background-color: #f0f0f0 !important;
-        color: #000000 !important;
-    }
-
-    /* Generic Buttons with better contrast */
-    .stButton > button,
-    button[data-testid="baseButton-secondary"],
-    button[data-testid="baseButton-primary"] {
-        border-radius: 25px !important;
-        border: none !important;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        color: #ffffff !important;
-        font-weight: 600 !important;
-        padding: 0.6rem 1.2rem !important;
-        transition: 0.3s ease-in-out !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
-    }
-
-    .stButton > button:hover,
-    button[data-testid="baseButton-secondary"]:hover,
-    button[data-testid="baseButton-primary"]:hover {
-        background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
-        transform: scale(1.02) !important;
-        color: #ffffff !important;
-    }
-
-    /* Special styling for Login/Signup buttons - more specific selectors */
-    button:has(div:contains("Login")),
-    button:has(span:contains("Login")),
-    button[aria-label*="Login"],
-    .stButton > button:has(*:contains("Login")) {
-        background: #ffffff !important;
-        color: #000000 !important;
-        border: 2px solid #764ba2 !important;
-        font-weight: 700 !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-    }
-
-    button:has(div:contains("Sign Up")),
-    button:has(span:contains("Sign Up")),
-    button:has(div:contains("Signup")),
-    button:has(span:contains("Signup")),
-    button[aria-label*="Sign"],
-    .stButton > button:has(*:contains("Sign")) {
-        background: #ffffff !important;
-        color: #000000 !important;
-        border: 2px solid #764ba2 !important;
-        font-weight: 700 !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-    }
-
-    /* Hover effects for login/signup buttons */
-    button:has(div:contains("Login")):hover,
-    button:has(span:contains("Login")):hover,
-    button:has(div:contains("Sign")):hover,
-    button:has(span:contains("Sign")):hover,
-    button:has(div:contains("Signup")):hover,
-    button:has(span:contains("Signup")):hover {
-        background: #f0f0f0 !important;
-        color: #000000 !important;
-        transform: scale(1.02) !important;
-    }
-
-    /* Metrics styling */
-    .stMetric,
-    [data-testid="metric-container"] {
-        background: white !important;
-        padding: 1rem !important;
-        border-radius: 10px !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-    }
-
-    .stMetric label, .stMetric div, .stMetric span,
-    [data-testid="metric-container"] label,
-    [data-testid="metric-container"] div,
-    [data-testid="metric-container"] span {
-        color: #000000 !important;
-    }
-
-    /* Sidebar with consistent styling */
+    /* Sidebar */
     section[data-testid="stSidebar"] {
         background-color: #f0f2f6 !important;
     }
 
-    section[data-testid="stSidebar"] *,
-    section[data-testid="stSidebar"] label,
-    section[data-testid="stSidebar"] span,
-    section[data-testid="stSidebar"] div,
-    section[data-testid="stSidebar"] p {
+    section[data-testid="stSidebar"] * {
         color: #000000 !important;
     }
 
-    /* Fix any remaining white text issues */
-    * {
-        color: inherit !important;
-    }
-
-    /* Ensure root text color is black */
-    html, body, .stApp {
+    /* Override any dark theme */
+    .stApp[data-theme="dark"] * {
         color: #000000 !important;
     }
 
-    /* Override any theme-based white text */
-    .stApp [data-theme="light"] *,
-    .stApp [data-theme="dark"] * {
+    /* Last resort - target everything */
+    html, body, #root, .stApp, .main, .block-container {
         color: #000000 !important;
-    }
-
-    /* Add comprehensive input container styling for deployment */
-    .stTextInput > div > div > div,
-    .stTextInput > div > div,
-    .stTextInput > div,
-    [data-testid="stTextInput"] > div > div > div,
-    [data-testid="stTextInput"] > div > div,
-    [data-testid="stTextInput"] > div,
-    div[data-baseweb="input"],
-    .st-emotion-cache-qrbaxs,
-    .st-emotion-cache-1d391kg {
-        background-color: #ffffff !important;
-        border-radius: 10px !important;
-        border: 2px solid #e0e6ff !important;
-    }
-
-    /* Force all input elements to be visible */
-    input, input[type="text"], input[type="password"], input[type="email"] {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-        border: 2px solid #e0e6ff !important;
-        border-radius: 10px !important;
-        padding: 8px 12px !important;
-        box-shadow: none !important;
-        -webkit-appearance: none !important;
-        appearance: none !important;
-    }
-
-    /* Specific fix for Streamlit's emotion cache classes used in deployment */
-    [class*="st-emotion-cache"] input,
-    [class*="emotion-cache"] input {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-        border: 2px solid #e0e6ff !important;
-        border-radius: 10px !important;
-    }
-
-    /* Specific fix for deployment environments */
-    @media screen {
-        .stApp, .stApp *, 
-        .main *, 
-        [data-testid="stAppViewContainer"] *,
-        [data-testid="stHeader"] *,
-        [data-testid="stToolbar"] *,
-        [data-testid="stDecoration"] *,
-        [data-testid="stStatusWidget"] *,
-        [data-testid="stBottom"] * {
-            color: #000000 !important;
-        }
     }
     </style>
     """, unsafe_allow_html=True)
-    
+
+
 # Initialize at the very start
 init_session_state()
 apply_custom_css()
