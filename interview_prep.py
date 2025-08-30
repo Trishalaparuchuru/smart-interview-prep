@@ -473,8 +473,8 @@ def apply_custom_css():
         color: #000000 !important;
     }
 
-    /* Text area input */
-    .stTextArea textarea {
+    /* Text inputs + Password fields */
+    .stTextInput input, .stPasswordInput input, .stTextArea textarea {
         background-color: white !important;
         border-radius: 10px !important;
         border: 2px solid #e0e6ff !important;
@@ -489,7 +489,7 @@ def apply_custom_css():
     }
 
     /* Buttons */
-    div.stButton > button {
+    .stButton > button {
         border-radius: 25px !important;
         border: none !important;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
@@ -497,20 +497,11 @@ def apply_custom_css():
         font-weight: 600 !important;
         padding: 0.6rem 1.2rem !important;
         transition: 0.3s ease-in-out;
-        width: 100% !important;
-        height: 3rem !important;
     }
 
-    /* Hover effect */
-    div.stButton > button:hover {
+    .stButton > button:hover {
         background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
         transform: scale(1.02);
-    }
-
-    /* Disabled button styling */
-    div.stButton > button:disabled {
-        background: linear-gradient(135deg, #a5a5a5 0%, #7d7d7d 100%) !important;
-        color: #ffffff !important;
     }
 
     /* Metrics */
@@ -520,7 +511,7 @@ def apply_custom_css():
         border-radius: 10px !important;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
-    .stMetric label, .stMetric div {
+    .stMetric label, .stMetric div, .stMetric span {
         color: #000000 !important;
     }
 
@@ -533,6 +524,7 @@ def apply_custom_css():
     }
     </style>
     """, unsafe_allow_html=True)
+
 
 # Initialize at the very start
 init_session_state()
