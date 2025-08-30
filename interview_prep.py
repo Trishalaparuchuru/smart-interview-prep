@@ -539,36 +539,51 @@ def apply_custom_css():
         color: #000000 !important;
     }
 
-    /* Text area input with better contrast */
+    /* Text area input with better contrast - comprehensive selectors */
     .stTextArea textarea,
-    [data-testid="stTextArea"] textarea {
-        background-color: white !important;
+    [data-testid="stTextArea"] textarea,
+    .stTextArea div[data-baseweb="textarea"] textarea,
+    textarea[data-testid="stTextArea"],
+    .st-emotion-cache-1d391kg textarea {
+        background-color: #ffffff !important;
         border-radius: 10px !important;
         border: 2px solid #e0e6ff !important;
         color: #000000 !important;
         font-family: inherit !important;
+        box-shadow: none !important;
     }
 
     .stTextArea textarea::placeholder,
-    [data-testid="stTextArea"] textarea::placeholder {
+    [data-testid="stTextArea"] textarea::placeholder,
+    textarea::placeholder {
         color: #666666 !important;
     }
 
-    /* Text input styling */
+    /* Text input styling - multiple selectors for deployment compatibility */
     .stTextInput input,
-    [data-testid="stTextInput"] input {
-        background-color: white !important;
+    [data-testid="stTextInput"] input,
+    .stTextInput div[data-baseweb="input"] input,
+    input[data-testid="textinput-input"],
+    .st-emotion-cache-qrbaxs input,
+    .st-emotion-cache-1d391kg input {
+        background-color: #ffffff !important;
         color: #000000 !important;
         border-radius: 10px !important;
         border: 2px solid #e0e6ff !important;
+        box-shadow: none !important;
     }
 
-    /* Password input styling */
-    input[type="password"] {
-        background-color: white !important;
+    /* Password input styling - comprehensive selectors */
+    input[type="password"],
+    .stTextInput input[type="password"],
+    [data-testid="stTextInput"] input[type="password"],
+    .stTextInput div[data-baseweb="input"] input[type="password"],
+    input[data-testid="textinput-input"][type="password"] {
+        background-color: #ffffff !important;
         color: #000000 !important;
         border-radius: 10px !important;
         border: 2px solid #e0e6ff !important;
+        box-shadow: none !important;
     }
 
     /* Selectbox dropdowns with better visibility */
@@ -703,10 +718,40 @@ def apply_custom_css():
         color: #000000 !important;
     }
 
-    /* Force visibility for all interactive elements */
-    input, select, textarea, button {
+    /* Add comprehensive input container styling for deployment */
+    .stTextInput > div > div > div,
+    .stTextInput > div > div,
+    .stTextInput > div,
+    [data-testid="stTextInput"] > div > div > div,
+    [data-testid="stTextInput"] > div > div,
+    [data-testid="stTextInput"] > div,
+    div[data-baseweb="input"],
+    .st-emotion-cache-qrbaxs,
+    .st-emotion-cache-1d391kg {
+        background-color: #ffffff !important;
+        border-radius: 10px !important;
+        border: 2px solid #e0e6ff !important;
+    }
+
+    /* Force all input elements to be visible */
+    input, input[type="text"], input[type="password"], input[type="email"] {
+        background-color: #ffffff !important;
         color: #000000 !important;
-        background-color: white !important;
+        border: 2px solid #e0e6ff !important;
+        border-radius: 10px !important;
+        padding: 8px 12px !important;
+        box-shadow: none !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+    }
+
+    /* Specific fix for Streamlit's emotion cache classes used in deployment */
+    [class*="st-emotion-cache"] input,
+    [class*="emotion-cache"] input {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 2px solid #e0e6ff !important;
+        border-radius: 10px !important;
     }
 
     /* Specific fix for deployment environments */
@@ -724,6 +769,7 @@ def apply_custom_css():
     }
     </style>
     """, unsafe_allow_html=True)
+    
 # Initialize at the very start
 init_session_state()
 apply_custom_css()
