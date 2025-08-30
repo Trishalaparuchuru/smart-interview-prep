@@ -453,93 +453,277 @@ def apply_custom_css():
         padding-bottom: 2rem;
     }
 
-    /* Force all text to black */
-    .stMarkdown, .stMarkdown p, .stMarkdown div, 
-    .markdown-text-container, label, span, p, li, strong {
+    /* More aggressive text color forcing with multiple selectors */
+    .stApp, .stApp *, 
+    .stMarkdown, .stMarkdown *, 
+    .stText, .stText *,
+    .markdown-text-container, .markdown-text-container *,
+    p, span, div, label, strong, em, li, ul, ol,
+    [data-testid="stMarkdownContainer"], [data-testid="stMarkdownContainer"] *,
+    [data-testid="stText"], [data-testid="stText"] * {
         color: #000000 !important;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    /* Headers with stronger specificity */
+    h1, h2, h3, h4, h5, h6,
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, 
+    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6,
+    [data-testid="stMarkdownContainer"] h1,
+    [data-testid="stMarkdownContainer"] h2,
+    [data-testid="stMarkdownContainer"] h3,
+    [data-testid="stMarkdownContainer"] h4,
+    [data-testid="stMarkdownContainer"] h5,
+    [data-testid="stMarkdownContainer"] h6 {
         color: #000000 !important;
+        text-shadow: none !important;
     }
 
-    /* Expander styling */
-    .stExpander, .stExpander summary {
+    /* Welcome Back text specifically */
+    .stApp h1:contains("Welcome Back"),
+    [data-testid="stMarkdownContainer"]:has-text("Welcome Back"),
+    div:contains("Welcome Back") {
+        color: #000000 !important;
+        font-weight: bold !important;
+    }
+
+    /* Input labels */
+    label, .stSelectbox label, .stTextInput label, .stTextArea label,
+    [data-testid="stWidgetLabel"], [data-testid="stWidgetLabel"] * {
+        color: #000000 !important;
+        font-weight: 500 !important;
+    }
+
+    /* Tab styling */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border-radius: 8px 8px 0 0 !important;
+        border: 1px solid #ddd !important;
+        padding: 8px 16px !important;
+    }
+
+    .stTabs [aria-selected="true"] {
+        background-color: #667eea !important;
+        color: #ffffff !important;
+    }
+
+    /* Expander styling with better visibility */
+    .streamlit-expanderHeader {
         background: white !important;
+        color: #000000 !important;
         border-radius: 10px !important;
         border: 1px solid #ddd !important;
+    }
+
+    .streamlit-expanderContent {
+        background: white !important;
+        color: #000000 !important;
+        border-radius: 0 0 10px 10px !important;
+        border: 1px solid #ddd !important;
+        border-top: none !important;
+    }
+
+    details[data-testid="stExpander"] summary {
+        background: white !important;
+        color: #000000 !important;
+        border-radius: 10px !important;
+        border: 1px solid #ddd !important;
+    }
+
+    details[data-testid="stExpander"] div {
+        background: white !important;
         color: #000000 !important;
     }
 
-    /* Text area input */
-    .stTextArea textarea {
+    /* Text area input with better contrast */
+    .stTextArea textarea,
+    [data-testid="stTextArea"] textarea {
         background-color: white !important;
         border-radius: 10px !important;
         border: 2px solid #e0e6ff !important;
         color: #000000 !important;
+        font-family: inherit !important;
     }
 
-    /* Selectbox dropdowns */
-    .stSelectbox div[data-baseweb="select"] > div {
+    .stTextArea textarea::placeholder,
+    [data-testid="stTextArea"] textarea::placeholder {
+        color: #666666 !important;
+    }
+
+    /* Text input styling */
+    .stTextInput input,
+    [data-testid="stTextInput"] input {
+        background-color: white !important;
+        color: #000000 !important;
+        border-radius: 10px !important;
+        border: 2px solid #e0e6ff !important;
+    }
+
+    /* Password input styling */
+    input[type="password"] {
+        background-color: white !important;
+        color: #000000 !important;
+        border-radius: 10px !important;
+        border: 2px solid #e0e6ff !important;
+    }
+
+    /* Selectbox dropdowns with better visibility */
+    .stSelectbox div[data-baseweb="select"] > div,
+    [data-testid="stSelectbox"] div[data-baseweb="select"] > div {
         background-color: white !important;
         border-radius: 10px !important;
         color: #000000 !important;
+        border: 2px solid #e0e6ff !important;
     }
 
-    /* 🔥 Generic Buttons (gradient style) */
-    .stButton > button {
+    /* Dropdown menu items */
+    .stSelectbox ul[role="listbox"],
+    [data-baseweb="menu"] ul {
+        background-color: white !important;
+        color: #000000 !important;
+    }
+
+    .stSelectbox li[role="option"],
+    [data-baseweb="menu"] li {
+        background-color: white !important;
+        color: #000000 !important;
+    }
+
+    .stSelectbox li[role="option"]:hover,
+    [data-baseweb="menu"] li:hover {
+        background-color: #f0f0f0 !important;
+        color: #000000 !important;
+    }
+
+    /* Generic Buttons with better contrast */
+    .stButton > button,
+    button[data-testid="baseButton-secondary"],
+    button[data-testid="baseButton-primary"] {
         border-radius: 25px !important;
         border: none !important;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
         color: #ffffff !important;
         font-weight: 600 !important;
         padding: 0.6rem 1.2rem !important;
-        transition: 0.3s ease-in-out;
+        transition: 0.3s ease-in-out !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
     }
 
-    .stButton > button:hover {
+    .stButton > button:hover,
+    button[data-testid="baseButton-secondary"]:hover,
+    button[data-testid="baseButton-primary"]:hover {
         background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
-        transform: scale(1.02);
+        transform: scale(1.02) !important;
+        color: #ffffff !important;
     }
 
-    /* 🔥 Special Styling for Login / Signup Buttons */
-    .stButton > button:has(span:contains("Login")),
-    .stButton > button:has(span:contains("Signup")),
-    .stButton > button:has(span:contains("Sign Up")) {
-        background: #ffffff !important;   /* White background */
-        color: #000000 !important;        /* Black text */
-        border: 2px solid #764ba2 !important; /* Purple border to stand out */
+    /* Special styling for Login/Signup buttons - more specific selectors */
+    button:has(div:contains("Login")),
+    button:has(span:contains("Login")),
+    button[aria-label*="Login"],
+    .stButton > button:has(*:contains("Login")) {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 2px solid #764ba2 !important;
         font-weight: 700 !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
 
-    .stButton > button:has(span:contains("Login")):hover,
-    .stButton > button:has(span:contains("Signup")):hover,
-    .stButton > button:has(span:contains("Sign Up")):hover {
+    button:has(div:contains("Sign Up")),
+    button:has(span:contains("Sign Up")),
+    button:has(div:contains("Signup")),
+    button:has(span:contains("Signup")),
+    button[aria-label*="Sign"],
+    .stButton > button:has(*:contains("Sign")) {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 2px solid #764ba2 !important;
+        font-weight: 700 !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Hover effects for login/signup buttons */
+    button:has(div:contains("Login")):hover,
+    button:has(span:contains("Login")):hover,
+    button:has(div:contains("Sign")):hover,
+    button:has(span:contains("Sign")):hover,
+    button:has(div:contains("Signup")):hover,
+    button:has(span:contains("Signup")):hover {
         background: #f0f0f0 !important;
-        transform: scale(1.02);
+        color: #000000 !important;
+        transform: scale(1.02) !important;
     }
 
-    /* Metrics */
-    .stMetric {
+    /* Metrics styling */
+    .stMetric,
+    [data-testid="metric-container"] {
         background: white !important;
         padding: 1rem !important;
         border-radius: 10px !important;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
-    .stMetric label, .stMetric div {
+
+    .stMetric label, .stMetric div, .stMetric span,
+    [data-testid="metric-container"] label,
+    [data-testid="metric-container"] div,
+    [data-testid="metric-container"] span {
         color: #000000 !important;
     }
 
-    /* Sidebar */
+    /* Sidebar with consistent styling */
     section[data-testid="stSidebar"] {
         background-color: #f0f2f6 !important;
     }
-    section[data-testid="stSidebar"] * {
+
+    section[data-testid="stSidebar"] *,
+    section[data-testid="stSidebar"] label,
+    section[data-testid="stSidebar"] span,
+    section[data-testid="stSidebar"] div,
+    section[data-testid="stSidebar"] p {
         color: #000000 !important;
+    }
+
+    /* Fix any remaining white text issues */
+    * {
+        color: inherit !important;
+    }
+
+    /* Ensure root text color is black */
+    html, body, .stApp {
+        color: #000000 !important;
+    }
+
+    /* Override any theme-based white text */
+    .stApp [data-theme="light"] *,
+    .stApp [data-theme="dark"] * {
+        color: #000000 !important;
+    }
+
+    /* Force visibility for all interactive elements */
+    input, select, textarea, button {
+        color: #000000 !important;
+        background-color: white !important;
+    }
+
+    /* Specific fix for deployment environments */
+    @media screen {
+        .stApp, .stApp *, 
+        .main *, 
+        [data-testid="stAppViewContainer"] *,
+        [data-testid="stHeader"] *,
+        [data-testid="stToolbar"] *,
+        [data-testid="stDecoration"] *,
+        [data-testid="stStatusWidget"] *,
+        [data-testid="stBottom"] * {
+            color: #000000 !important;
+        }
     }
     </style>
     """, unsafe_allow_html=True)
-
 # Initialize at the very start
 init_session_state()
 apply_custom_css()
